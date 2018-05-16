@@ -36,14 +36,14 @@ const server = express();
 //     })
 // }
 
-// function seperateObject(info) {
-//     let usernameVal = Object.values(info, [0]);
-//     usernameVal = usernameVal[0]
-//     let obj = {
-//         username: usernameVal.toString()
-//     }
-//     return obj;
-// }
+function seperateObject(info) {
+    let usernameVal = Object.values(info, [0]);
+    usernameVal = usernameVal[0]
+    let obj = {
+        username: usernameVal.toString()
+    }
+    return obj;
+}
 
 // function restrictedCheck(req, res) {
 //     if(req.session && req.session.username) {
@@ -53,7 +53,7 @@ const server = express();
 //     }
 // }
 
-// server.use(express.json())
+server.use(express.json())
 
 // server.use('/', router )
 
@@ -206,6 +206,15 @@ server.get('/', function(req, res) {
       })
       .catch(err => res.status(500).json(err));
   });
+
+// server.post('/register', (req, res) => {
+//     const user = new User(req.body);
+//     user.save().then(user => {
+//         res.send(user)
+//     }).catch(err => {
+//         res.status(400).json(err)
+//     })
+// })
 
   server.post('/login', authenticate, (req, res) => {
     // if we're here the user logged in correctly
