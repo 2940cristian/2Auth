@@ -30,12 +30,6 @@ const server = express();
 
 
 //SERVER FUNCTIONS/MIDDLEWARE
-// function validate(password, passwordDB) {
-//     bcrypt.compare(password, passwordDB, function(err, res) {
-//         console.log(res)
-//     })
-// }
-
 function seperateObject(info) {
     let usernameVal = Object.values(info, [0]);
     usernameVal = usernameVal[0]
@@ -55,74 +49,8 @@ function seperateObject(info) {
 
 server.use(express.json())
 
-// server.use('/', router )
-
-
 
 //SERVER HANDLERS
-
-// server.get('/', (req, res) => {
-//     if (req.session && req.session.username) {
-//         User.find().then(users => {
-//             res.status(200).json(users)
-//         })
-//     //   res.send(`welcome back ${req.session.username}`);
-//     } else {
-//       res.send('YOU SHALL NOT PASS');
-//     }
-//   });
-  
-
-// server.post('/register', (req, res) => {
-//     const user = new User(req.body);
-
-//     user.save().then(user => {
-//         res.send(user)
-//     }).catch(err => {
-//         res.status(400).json({
-//             error: "There was an error registering as a new user"
-//         })
-//     })
-// })
-
-// server.post('/login', (req, res, next) => {
-//     const login = req.body;
-//     // console.log(login)
-    
-//     User.findOne(seperateObject(login)).then(user => {
-//         // console.log(login.password)
-//         // console.log(user.password)
-
-//         user.isPasswordValid(login.password).then(valid => {
-//             if(valid) {
-//                 req.session.username = user.username
-//                 res.send("Login successful")
-//             } else {
-//                 res.send("Login failed")
-//             }
-//         })
-//     }).catch(err => {
-//         res.status(400).json({
-//             error: "Could not find that username"
-//         })
-//     })
-// })
-
-// server.get("/logout", (req, res) => {
-//     if(req.session) {
-//         req.session.destroy(function(err) {
-//             if(err) {
-//                 res.send('Error')
-//             } else {
-//                 res.send("Logged out, goodbye(:")
-//             }
-//         })
-//     }
-// })
-
-// server.get("/api/restricted", (req, res) => {
-//     res.send("RESTRICTED SERVER RUNNING")
-// })
 
 
 const localStrategy = new LocalStrategy(function(username, password, done) {
@@ -206,15 +134,6 @@ server.get('/', function(req, res) {
       })
       .catch(err => res.status(500).json(err));
   });
-
-// server.post('/register', (req, res) => {
-//     const user = new User(req.body);
-//     user.save().then(user => {
-//         res.send(user)
-//     }).catch(err => {
-//         res.status(400).json(err)
-//     })
-// })
 
   server.post('/login', authenticate, (req, res) => {
     // if we're here the user logged in correctly
