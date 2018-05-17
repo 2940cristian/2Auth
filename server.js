@@ -39,14 +39,6 @@ function seperateObject(info) {
     return obj;
 }
 
-// function restrictedCheck(req, res) {
-//     if(req.session && req.session.username) {
-//         res.send("You may pass")
-//     } else {
-//         res.send("YOU SHALL NOT PASS");
-//     }
-// }
-
 server.use(express.json())
 
 
